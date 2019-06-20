@@ -1,10 +1,14 @@
 import React from 'react';
+import NavBar from '../components/NavBar'
+import CardContainer from '../containers/CardContainer'
 
 const Prizes = () => {
     return (
-        <header>
+        <div>
+            <NavBar />
             <h1>Prizes</h1>
-        </header>
+            <CardContainer cardType="prizes" />
+        </div>
     );
 }
 
