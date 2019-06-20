@@ -5,10 +5,13 @@ import EmployeesDetail from './pages/EmployeesDetail';
 import Prizes from './pages/Prizes';
 import PrizesDetail from './pages/PrizesDetail';
 import Achievements from './pages/Achievements';
+import NavBar from './components/NavBar'
+import './App.css'
 
 function App() {
   return (
     <HashRouter>
+      <NavBar/>
       <Switch>
         <Route exact path="/"
           render={() => (
