@@ -8,7 +8,8 @@ class CardContainer extends Component {
         super(props);
         this.state = {
             cardType: props.cardType,
-            list: []
+            list: [],
+            disableInput:true
         };
     }
 
@@ -40,18 +41,29 @@ class CardContainer extends Component {
                 });
             })
     }
+    editAchievement=(e,id)=>{
+        this.setState({
+            disableInput:false
+        });
+    }
+    editChecked=(e)=>{
+        this.setState({
+            disableInput:true
+        });
+    }
 
     render() {
         const {
             cardType,
-            list
+            list,
+            disableInput
         } = this.state;
 
         var cards;
 
         if (cardType === "achievements") {
             cards = list.map(({ id, name, points }) => (
-                <AchievementCard name={name} points={points} key={id} />
+                <AchievementCard name={name} points={points} key={id} editAchievement={(e)=>this.editAchievement(e,id)} disabled={disableInput} editChecked={(e)=>this.editChecked(e)} />
             ));
         }
         else {
