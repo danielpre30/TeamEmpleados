@@ -5,29 +5,28 @@ import pointSmall from '../resources/pointSmall.png';
 import '../styles/AchievementCard.css'
 import checked from '../resources/checked.png';
 
-class AchievementCard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            name : props.name,
-            points : props.points,
-            disabled: props.disabled,
-            editAchievement:props.editAchievement,
-            editChecked:props.editChecked
-        }
-        
-    }
+// class AchievementCard extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         name : props.name,
+    //         points : props.points,
+    //         disabled: props.disabled,
+    //         editAchievement:props.editAchievement,
+    //         editChecked:props.editChecked
+    //     }
+    // }
     
-    render() {
-        const { name, points, disabled,editAchievement,editChecked } = this.state;
+    function AchievementCard({ name, points, disabled,editAchievement}) {
+        
         var changeEditImg, inputDisabled;
         if(disabled){
             changeEditImg=<img onClick={editAchievement} className="ImgEdit" src={editImg} alt="Edit"/>
-            inputDisabled=<input className="SpanName" disabled>{name}</input>
+            inputDisabled=<span className="SpanName"  >{name}</span>
         }
         else{
-            changeEditImg=<img onClick={editChecked} className="ImgEdit" src={checked} alt="Edit"/>
-            inputDisabled=<input className="SpanName">{name}</input>
+            changeEditImg=<img onClick={editAchievement} className="ImgEdit" src={checked} alt="Edit"/>
+            inputDisabled=<input className="SpanName" defaultValue={name} />
 
         }
         return (
@@ -48,6 +47,6 @@ class AchievementCard extends Component {
             </>
         );
     }
-}
+
 
 export default AchievementCard;
