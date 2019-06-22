@@ -8,7 +8,7 @@ class Employees extends Component{
     render(){
         return (
             <div>
-                <h1>Employees</h1>
+                <h1 className="page-title">Employees</h1>
                 <CardContainer cardType="employees"/>
             </div>
         );
