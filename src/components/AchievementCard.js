@@ -4,17 +4,18 @@ import editImg from '../resources/edit.png';
 import pointSmall from '../resources/pointSmall.png';
 import '../styles/AchievementCard.css'
 import checked from '../resources/checked.png';
-    
-    function AchievementCard({ name, points, disabled,editAchievement}) {
-        
+
+class AchievementCard extends Component {
+    render() {
+        const { name, points, disabled, editAchievement } = this.props;
         var changeEditImg, inputDisabled;
-        if(disabled){
-            changeEditImg=<img onClick={editAchievement} className="ImgEdit" src={editImg} alt="Edit"/>
-            inputDisabled=<span className="SpanName"  >{name}</span>
+        if (disabled) {
+            changeEditImg = <img onClick={editAchievement} className="ImgEdit" src={editImg} alt="Edit" />
+            inputDisabled = <span className="SpanName"  >{name}</span>
         }
-        else{
-            changeEditImg=<img onClick={editAchievement} className="ImgEdit" src={checked} alt="Edit"/>
-            inputDisabled=<input className="InputName" defaultValue={name} />
+        else {
+            changeEditImg = <img onClick={editAchievement} className="ImgEdit" src={checked} alt="Edit" />
+            inputDisabled = <input className="InputName" defaultValue={name} />
 
         }
         return (
@@ -22,18 +23,18 @@ import checked from '../resources/checked.png';
                 <div className="DivList">
                     <div className="DivItems">
                         <li className="LiAchievemet">
-                            {inputDisabled}                            
-                            <img className="ImgPoints" src={pointSmall} alt="Points"/>
+                            {inputDisabled}
+                            <img className="ImgPoints" src={pointSmall} alt="Points" />
                             <span className="SpanPoints">{points}</span>
                         </li>
                     </div>
                     <div className="DivButtons">
                         {changeEditImg}
-                        <img src={deleteImg} alt="Delete"/>
+                        <img src={deleteImg} alt="Delete" />
                     </div>
                 </div>
             </>
         );
     }
-
+}
 export default AchievementCard;
