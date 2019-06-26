@@ -5,6 +5,7 @@ import EmployeesDetail from './pages/EmployeesDetail';
 import Prizes from './pages/Prizes';
 import PrizesDetail from './pages/PrizesDetail';
 import Achievements from './pages/Achievements';
+import NotFound from './pages/NotFound';
 import NavBar from './components/NavBar'
 import './App.css'
 
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/prizes" component={Prizes}/>
         <Route exact path="/prizes/:id" component={PrizesDetail} />
         <Route exact path="/achievements" component={Achievements} />
+        <Route component={NotFound}></Route>
       </Switch>
     </HashRouter>
   );

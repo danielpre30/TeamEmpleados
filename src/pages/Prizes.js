@@ -3,10 +3,12 @@ import CardContainer from '../containers/CardContainer'
 
 const Prizes = () => {
     return (
-        <div>
-            <h1>Prizes</h1>
-            <CardContainer cardType="prizes" />
-        </div>
+        <>
+            <h1 className="page-title">Prizes</h1>
+            <div className="card-container">
+                <CardContainer cardType="prizes" />
+            </div>
+        </>
     );
 }
 

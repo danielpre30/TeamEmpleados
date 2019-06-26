@@ -2,9 +2,9 @@ import React from 'react';
 
 const PrizesDetail = () => {
     return (
-        <header>
-            <h1>Prizes Detail</h1>
-        </header>
+        <>
+            <h1 className="page-title">Prizes Detail</h1>
+        </>
     );
 }
 

@@ -2,9 +2,9 @@ import React from 'react';
 
 const EmployeesDetail = () => {
     return (
-        <header>
-            <h1>Employee Detail</h1>
-        </header>
+        <>
+            <h1 className="page-title">Employee Detail</h1>
+        </>
     );
 }
 

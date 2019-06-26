@@ -10,20 +10,22 @@
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1.5px solid rgba(43,221,215, 0.8);
+    border: 1.5px solid rgba(43, 221, 215, 0.8);
     border-radius: 0.80rem;
     width: 15rem;
+    margin: 35px 12px;
+    justify-content: space-between;
+    justify-self: center;
 }
 
 .card .card-image {
     width: 100%;
-
+    cursor: pointer;
 }
 
 .card-header {
     text-align: center;
     font-size: 1.7em;
-    
 }
 
 .card-content {
@@ -32,12 +34,12 @@
     align-items: center;
 }
 
-.img-points{
+.img-points {
     width: 30px;
-    margin-left:3px;
+    margin-left: 3px;
 }
 
-.card-title{
+.card-title {
     margin: 6px 12px;
     padding: 0;
     font-size: 1.2em;

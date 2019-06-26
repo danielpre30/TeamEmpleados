@@ -20,10 +20,10 @@ class CardContainer extends Component {
         this.getObjects(cardType);
     }
 
-    getObjects(parameter) {
+    getObjects(url) {
         const axios = require('axios');
 
-        axios.get(`${BASE_LOCAL_ENDPOINT}/${parameter}`)
+        axios.get(`${BASE_LOCAL_ENDPOINT}/${url}`)
             .then((response) => {
                 // handle success
                 this.setState({
@@ -55,8 +55,8 @@ class CardContainer extends Component {
             ));
         }
         else {
-            cards = list.map((current) =>
-                <Card name={current.name} srcImage={current.imgSrc} points={current.points} key={current.id}></Card>
+            cards = list.map(({name, imgSrc, points, id}) =>
+                <Card name={name} srcImage={imgSrc} points={points} key={id} id={id} cardType={cardType}></Card>
             );
         }
 

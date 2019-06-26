@@ -22,6 +22,7 @@ class Achievements extends Component{
     render() {
         return (
             <>
+                <h1 className="page-title">Achievements</h1>
                 <div className='achievementsCont'>
                     <ul className='achievement'>
                         <CardContainer cardType="achievements"/>
