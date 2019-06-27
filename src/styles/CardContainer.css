@@ -12,8 +12,13 @@
 /* Employees y Prizes */
 
 .card-container {
-    padding: 0 25px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: .5rem;
+    justify-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: initial;
 }

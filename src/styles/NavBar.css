@@ -35,9 +35,14 @@
     }
 }
 
-@media only screen and (max-width: 315px) {
+@media only screen and (max-width: 330px) {
     /*shows elements in a column*/
     .nav-item-cont {
         flex-direction: column;
     }
+}
+
+.nav-item.active a {
+    color: #62E52C;
+    text-shadow: 0 0 2px #2BDDD7;
 }

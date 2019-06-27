@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Card from '../components/Card';
 import { BASE_LOCAL_ENDPOINT } from '../constants';
 import AchievementCard from '../components/AchievementCard';
+import { Link } from 'react-router-dom';
 
 class CardContainer extends Component {
     constructor(props) {
@@ -55,13 +56,15 @@ class CardContainer extends Component {
             ));
         }
         else {
-            cards = list.map(({name, imgSrc, points, id}) =>
+            cards = list.map(({ name, imgSrc, points, id }) =>
                 <Card name={name} srcImage={imgSrc} points={points} key={id} id={id} cardType={cardType}></Card>
+
             );
         }
 
         return (
             <>
+
                 {cards}
             </>
         );
