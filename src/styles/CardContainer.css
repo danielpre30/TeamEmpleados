@@ -38,7 +38,7 @@ form.buscar {
     padding: 5px;
 }
 
-input {
+input.input-buscar {
     position: absolute;
     top: 0;
     left: 0;
@@ -68,16 +68,16 @@ input {
     transition: all 1s;
 }
 
-form:hover {
+form.buscar:hover {
     width: 40%;
     cursor: pointer;
 }
 
-form:hover input {
+form.buscar:hover input {
     display: block;
 }
 
-form:hover .fa {
+form.buscar:hover .fa {
     background: #fff;
     color: #253746;
 }

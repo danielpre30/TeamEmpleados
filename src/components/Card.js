@@ -21,7 +21,7 @@ const Card = ({ name, srcImage, points, id, cardType }) => {
         // </div>
         <div className="card">
             <div className="card__thumb"><span className="close-modal"><i className="fas fa-times fa-xs"></i></span>
-                <img src={srcImage} alt="Strawberry Waffle" />
+                <img src={srcImage} alt="Profile" />
             </div>
             <div className="card__content">
                 <header className="content__header">
