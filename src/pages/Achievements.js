@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import '../styles/CardContainer.css'
 import CardContainer from '../containers/CardContainer';
 
-class Achievements extends Component{
+class Achievements extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             // achievements: {
             //     content:[],
             //     error:false
@@ -13,24 +13,21 @@ class Achievements extends Component{
             // newAchievementFrom: {
             //     name: "",
             //     points: "",
-                
+
             // },
             // createAchievementError: false
         };
     }
-    
+
     render() {
         return (
             <>
                 <h1 className="page-title">Achievements</h1>
-                <div className='achievementsCont'>
-                    <ul className='achievement'>
-                        <CardContainer cardType="achievements"/>
-                    </ul>
-                </div>
+
+                <CardContainer cardType="achievements" />
             </>
         );
-    } 
+    }
 }
 
 export default Achievements;

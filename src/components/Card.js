@@ -19,21 +19,21 @@ const Card = ({ name, srcImage, points, id, cardType }) => {
         //         <img className="img-points" src={point} alt="Points" />
         //     </div>
         // </div>
-        <div class="card">
-            <div class="card__thumb"><span class="close-modal"><i class="fas fa-times fa-xs"></i></span>
+        <div className="card">
+            <div className="card__thumb"><span className="close-modal"><i className="fas fa-times fa-xs"></i></span>
                 <img src={srcImage} alt="Strawberry Waffle" />
             </div>
-            <div class="card__content">
-                <header class="content__header">
-                    <div class="row-wrapper">
-                        <h2 class="card-title">{name}</h2>
+            <div className="card__content">
+                <header className="content__header">
+                    <div className="row-wrapper">
+                        <h2 className="card-title">{name}</h2>
                     </div>
                 </header>
-                <p class="description">
+                <p className="description">
                     <b>Points </b>{points}
                     <img className="img-points" src={point} alt="Points" />
                 </p>
-                <footer class="content__footer">
+                <footer className="content__footer">
                     <Link key={id} to={`/${cardType}/${id}`}>More</Link>
                 </footer>
             </div>

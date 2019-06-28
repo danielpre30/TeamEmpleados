@@ -10,6 +10,12 @@
     margin: 10px;
 }
 
+.fa-bars {
+    color: #fff;
+    display: none;
+    align-self: center;
+}
+
 .nav-item a {
     text-decoration: none;
     color: white;
@@ -28,10 +34,35 @@
     margin: 15px;
 }
 
+.logo-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5em 1.5em
+}
+
 @media only screen and (max-width: 576px) {
     /*shows elements in a column*/
     .nav-bar {
         flex-direction: column;
+    }
+    .fa-bars {
+        display: inline;
+    }
+    .nav-item-cont {
+        transition: all 1s ease 0.3s;
+        opacity: 0;
+        transform: translate(0, -100%);
+    }
+    .nav-item-cont.active {
+        display: flex;
+        transition: all 0.3s linear;
+        opacity: 1;
+        transform: translate(0, 0)
+    }
+    .nav-item-cont:not(.active) {
+        display: none;
     }
 }
 

@@ -9,9 +9,7 @@ class Employees extends Component {
         return (
             <>
                 <h1 className="page-title">Employees</h1>
-                <div className="card-container">
-                    <CardContainer cardType="employees" />
-                </div>
+                <CardContainer cardType="employees" />
             </>
         );
     }

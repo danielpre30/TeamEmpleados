@@ -3,29 +3,30 @@ import Logo from '../resources/logo-team-international.png';
 import { Link } from "react-router-dom";
 import '../resources/Open_Sans/stylesheet.css';
 import '../styles/NavBar.css';
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 class NavBar extends Component {
 
+    componentDidMount(){
+        const menuIcon = document.getElementById('menu-icon');
+        const menuContent = document.getElementById('menu-content');
+        menuIcon.addEventListener('click', () =>{
+            menuContent.classList.toggle('active');
+        });
+    }
     render() {
-        const { label, to, activeOnlyWhenExact } = this.props;
-
         return (
-            <Route
-                path={to}
-                exact={activeOnlyWhenExact}
-                children={({ match }) => (
-                    <nav className="nav-bar">
-                        <img src={Logo} alt='Team Logo' className="logo"></img>
-                        <ul className='nav-item-cont'>
-                            <li className="nav-item"><MenuLink label="EMPLOYEES" to="/employees" activeOnlyWhenExact={false}></MenuLink></li>
-                            <li className="nav-item"><MenuLink label="PRIZES" to="/prizes" activeOnlyWhenExact={false}></MenuLink></li>
-                            <li className="nav-item"><MenuLink label="ACHIEVEMENTS" to="/achievements" activeOnlyWhenExact={false}></MenuLink></li>
-                        </ul>
-                    </nav>
-                )}
-            />
-
+            <nav className="nav-bar">
+                <div className="logo-container">
+                    <i className="fas fa-bars fa-2x" id="menu-icon"></i>
+                    <img src={Logo} alt='Team Logo' className="logo"></img>
+                </div>
+                <ul className='nav-item-cont' id="menu-content">
+                    <MenuLink label="EMPLOYEES" to="/employees" activeOnlyWhenExact={false}></MenuLink>
+                    <MenuLink label="PRIZES" to="/prizes" activeOnlyWhenExact={false}></MenuLink>
+                    <MenuLink label="ACHIEVEMENTS" to="/achievements" activeOnlyWhenExact={false}></MenuLink>
+                </ul>
+            </nav>
         );
     }
 }
