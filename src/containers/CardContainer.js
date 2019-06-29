@@ -25,13 +25,6 @@ class CardContainer extends Component {
             pointsPrize: "",
             imgSrcPrize: "",
             error: "",
-            listAchivements:[
-                // {
-                //     id:"",
-                //     name:"",
-                //     points:""
-                // }
-            ]
         };
     }
 
@@ -46,7 +39,14 @@ class CardContainer extends Component {
     };
 
     handleChange = (e, field) => {
-        const value = (field === "filterText") ? e.target.value.toLowerCase() : e.target.value;
+        var {list} = this.state;
+        var value = (field === "filterText") ? e.target.value.toLowerCase() : e.target.value;
+        if(field==="list"){
+            value = list.map(val=>
+                (val.id === parseInt(e.target.name, 10))? {...val, name: e.target.value}:val
+            );
+            console.log(value);
+        }
         this.setState({
             [field]: value //Los corchetes son para hacer referencia a la clave a partir de un string
         });
@@ -79,6 +79,73 @@ class CardContainer extends Component {
             };
         });
     };
+    editChecked = (e, id) => {
+        e.preventDefault();
+        const { list } = this.state;
+        const data = list.find((val) => {
+            return val.id === id;
+        });
+
+        const axios = require('axios');
+        axios.put(`${BASE_LOCAL_ENDPOINT}/achievements/${id}`, data)
+            .then(response => {
+                const MySwal = withReactContent(Swal);
+                MySwal.fire({
+                    type: 'success',
+                    title: `${response.data.name} has been saved`,
+                    showConfirmButton: false,
+                    timer: 1800
+                });
+            }).catch(error => {
+                console.log(error);
+                this.setState({
+                    error: error.message
+                });
+            });
+
+        this.setState(prevState => {
+            const oldlist = prevState.list;
+            return {
+                list: oldlist.map((current) => {
+                    const isSelected = current.id === id;
+                    return isSelected ? { ...current, disabled: !current.disabled } : current;
+                })
+
+            };
+        });
+    }
+    deleteAchievement = (e, id) => {
+        const axios = require('axios');
+        e.stopPropagation();
+        const MySwal = withReactContent(Swal);
+        MySwal.fire({
+            type: 'warning',
+            title: 'Are you sure?',
+            text: "You won't be able to revert this",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes,delete it'
+        }).then((result) => {
+            if (result.value) {
+                axios.delete(`${BASE_LOCAL_ENDPOINT}/achievements/${id}`)
+                    .then((response) => {
+                        this.setState(prevState => {
+                            const oldList = prevState.list;
+                            return ({
+                                list: oldList.filter(achievementList => achievementList.id !== id)
+                            });
+                        });
+
+                    }).catch((error) => {
+                        console.log(error);
+                    })
+                Swal.fire(
+                    'Deleted!'
+                )
+            }
+        });
+    }
     createEmployee(e) {
         e.preventDefault();
         const {
@@ -107,7 +174,7 @@ class CardContainer extends Component {
                 };
             });
             return response;
-        }).then(response=>{
+        }).then(response => {
             const MySwal = withReactContent(Swal);
             MySwal.fire({
                 type: 'success',
@@ -195,8 +262,12 @@ class CardContainer extends Component {
                                 name={name}
                                 points={points}
                                 key={id}
+                                id={id}
                                 editAchievement={e => this.editAchievement(e, id)}
+                                editChecked={e => this.editChecked(e, id)}
+                                deleteAchievement={e => this.deleteAchievement(e, id)}
                                 disabled={disabled}
+                                onChange = {(e)=> this.handleChange(e,"list")}
                             />
                         ))}
                     </ul>
