@@ -11,7 +11,7 @@
 
 /* Employees y Prizes */
 
-.card-container {
+.card-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: .5rem;
@@ -36,6 +36,7 @@ form.buscar {
     border-radius: 25px;
     border: 4px solid #253746;
     padding: 5px;
+    margin: 2em 0;
 }
 
 input.input-buscar {
@@ -80,4 +81,8 @@ form.buscar:hover input {
 form.buscar:hover .fa {
     background: #fff;
     color: #253746;
+}
+
+.menu-card-container{
+    position: relative;
 }

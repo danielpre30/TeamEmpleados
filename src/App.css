@@ -10,8 +10,11 @@ h2 {
   font-style: normal;
 }
 
-body, html {
+body, html, button {
   font-family: 'Open Sans';
+}
+
+body, html{
   font-weight: normal;
   font-style: normal;
 }

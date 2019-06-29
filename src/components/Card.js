@@ -6,19 +6,6 @@ import { Link } from 'react-router-dom';
 
 const Card = ({ name, srcImage, points, id, cardType }) => {
     return (
-        // <div className="card">
-        //     <div className="card-header">
-        //         <h2>{name}</h2>
-        //     </div>
-        //     <div className="image-container">
-        //         <img src={srcImage} alt={name} className="card-image"></img>
-        //     </div>
-        //     <div className="card-content">
-        //         <h3 className="card-title">Points</h3>
-        //         {points}
-        //         <img className="img-points" src={point} alt="Points" />
-        //     </div>
-        // </div>
         <div className="card">
             <div className="card__thumb"><span className="close-modal"><i className="fas fa-times fa-xs"></i></span>
                 <img src={srcImage} alt="Profile" />
@@ -30,11 +17,12 @@ const Card = ({ name, srcImage, points, id, cardType }) => {
                     </div>
                 </header>
                 <p className="description">
-                    <b>Points </b>{points}
+                    <span><b>Points: </b>{points}</span>
+                    
                     <img className="img-points" src={point} alt="Points" />
                 </p>
                 <footer className="content__footer">
-                    <Link key={id} to={`/${cardType}/${id}`}>More</Link>
+                    <Link key={id} to={`/${cardType}/${id}`}>View</Link>
                 </footer>
             </div>
         </div>

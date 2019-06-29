@@ -5,6 +5,9 @@ import AchievementCard from "../components/AchievementCard";
 import FormEmployee from "../components/FormEmployee";
 import FormPrize from "../components/FormPrize";
 import axios from "axios";
+import '../styles/FormAdd.css'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 class CardContainer extends Component {
     constructor(props) {
@@ -16,7 +19,7 @@ class CardContainer extends Component {
             jobEmployee: "",
             areaEmployee: "",
             imgSrcEmployee: "",
-            pointsEmployee: 0,
+            pointsEmployee: "",
             namePrize: "",
             descriptionPrize: "",
             pointsPrize: "",
@@ -36,7 +39,7 @@ class CardContainer extends Component {
     };
 
     handleChange = (e, field) => {
-        const value = e.target.value;
+        const value = (field === "filterText") ? e.target.value.toLowerCase() : e.target.value;
         this.setState({
             [field]: value //Los corchetes son para hacer referencia a la clave a partir de un string
         });
@@ -96,6 +99,15 @@ class CardContainer extends Component {
                     pointsEmployee: ""
                 };
             });
+            return response;
+        }).then(response=>{
+            const MySwal = withReactContent(Swal);
+            MySwal.fire({
+                type: 'success',
+                title: `${response.data.name} has been saved`,
+                showConfirmButton: false,
+                timer: 1800
+            });
         }).catch(error => {
             console.log(error);
             this.setState({
@@ -127,6 +139,15 @@ class CardContainer extends Component {
                     pointsPrize: "",
                     imgSrcPrize: ""
                 };
+            });
+            return response;
+        }).then(response => {
+            const MySwal = withReactContent(Swal);
+            MySwal.fire({
+                type: 'success',
+                title: `The prize ${response.data.name} has been saved`,
+                showConfirmButton: false,
+                timer: 1800
             });
         }).catch(error => {
             console.log(error);
@@ -177,7 +198,7 @@ class CardContainer extends Component {
         }
         else {
             cards = (
-                <div className="card-container">
+                <div className="card-list">
                     {filteredList.map(({ name, imgSrc, points, id }) => (
                         <Card
                             name={name}
@@ -218,21 +239,24 @@ class CardContainer extends Component {
         }
 
         return (
-            <>
-                <form action="" className="buscar">
-                    <input
-                        className="input-buscar"
-                        type="search"
-                        placeholder="Buscar"
-                        onChange={e => {
-                            this.handleChange(e, "filterText");
-                        }}
-                    />
+            <div className="card-container">
+                <div className="menu-card-container">
+                    <form action="" className="buscar">
+                        <input
+                            className="input-buscar"
+                            type="search"
+                            placeholder="Buscar"
+                            onChange={e => {
+                                this.handleChange(e, "filterText");
+                            }}
+                        />
+                        <i className="fa fa-search" />
+                    </form>
                     <i className="fa fa-search" />
-                </form>
+                </div>
                 {formEdit}
                 {cards}
-            </>
+            </div>
         );
     }
 }

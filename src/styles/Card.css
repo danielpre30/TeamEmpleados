@@ -74,6 +74,8 @@
 
 .card .card__content .description {
     margin: 0.3em 0 1.8em;
+    display: flex;
+    justify-content: space-around;
 }
 
 .card .card__content .content__footer {
@@ -88,6 +90,7 @@
     color: #fff;
     letter-spacing: 0.2px;
     font-size: 17px;
+    font-weight: 900;
 }
 
 .card .card__content .content__footer a:hover {
