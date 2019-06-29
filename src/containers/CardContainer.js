@@ -52,7 +52,9 @@ class CardContainer extends Component {
                 // handle success
                 response.data.sort(this.sortList);
                 this.setState({
-                    list: response.data
+                    list: response.data.map((current) => {
+                        return { ...current, disabled: true }
+                    })
                 });
             })
             .catch((error) => {
@@ -65,7 +67,19 @@ class CardContainer extends Component {
                 });
             })
     }
+    editAchievement = (e, id) => {
+        const { list } = this.state;
+        this.setState(prevState => {
+            const oldlist = prevState.list;
+            return {
+                list: oldlist.map((current) => {
+                    const isSelected = current.id === id;
+                    return isSelected ? { ...current, disabled: !current.disabled } : current;
+                })
 
+            };
+        });
+    }
     createEmployee(e) {
         e.preventDefault();
         console.log(2);
@@ -116,6 +130,8 @@ class CardContainer extends Component {
             };
         });
     }
+        
+   
     render() {
         const {
             list,
@@ -143,8 +159,8 @@ class CardContainer extends Component {
             cards = (
                 <div className='achievementsCont'>
                     <ul className='achievement'>
-                        {filteredList.map(({ id, name, points }) => (
-                            <AchievementCard name={name} points={points} key={id} />
+                        {filteredList.map(({ id, name, points, disabled }) => (
+                            <AchievementCard name={name} points={points} key={id} editAchievement={(e) => this.editAchievement(e, id)} disabled={disabled}/>
                         ))}
                     </ul>
                 </div>

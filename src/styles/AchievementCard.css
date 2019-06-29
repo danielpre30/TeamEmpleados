@@ -1,58 +1,75 @@
-.DivList{
+.DivList {
     display: grid;
     grid-template-columns: 2;
     grid-template-rows: repeat(1, auto);
 }
-.DivItems{
-    display:flex;
-    width:100%;
+
+.DivItems {
+    display: flex;
+    width: 100%;
 }
+
 @media (max-width: 768px) {
     .DivItems {
-        width:90%
+        width: 90%
     }
-    .LiAchievemet{
-        width:90%
+    .LiAchievemet {
+        width: 90%
     }
 }
+
 @media (max-width: 475px) {
     .DivItems {
-        width:80%
+        width: 80%
     }
-    .LiAchievemet{
-        width:80%
+    .LiAchievemet {
+        width: 80%
     }
 }
-.LiAchievemet{
-    padding:5px;
-    padding-right:10px;
-    list-style-type: none;
 
-    border-radius:5px;
+.LiAchievemet {
+    padding: 5px;
+    padding-right: 10px;
+    list-style-type: none;
+    border-radius: 5px;
     border-color: #abc1d3;
     border-style: solid;
-    border-width:1px;
+    border-width: 1px;
+    margin-bottom: 3%;
+    text-align: left;
+    margin-right: 6%;
+    width: 100%;
+}
 
-    margin-bottom:3%;
-    text-align:left;
-    margin-right:6%;
-    width:100%;
+.SpanPoints {
+    float: right;
 }
-.SpanPoints{
-    float:right;
+
+.ImgPoints {
+    float: right;
+    padding-top: 4px;
+    margin-left: 3px;
 }
-.ImgPoints{
-    float:right;
-    padding-top:4px;
-    margin-left:3px;
-}
-.DivButtons{
+
+.DivButtons {
     grid-template-columns: (auto-fill, 20px);
-    padding-top:8px;
-    position:absolute;
-    right:0;
-    padding-right:5%;
+    padding-top: 8px;
+    position: absolute;
+    right: 0;
+    padding-right: 5%;
 }
-.ImgEdit{
+
+.ImgEdit {
     margin-right: 10px;
+}
+
+.InputName {
+    border: 1px solid #abc1d3;
+    width: 90%;
+    background: transparent;
+    color: #F67B27;
+    font-family: 'Open Sans';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1em;
 }
