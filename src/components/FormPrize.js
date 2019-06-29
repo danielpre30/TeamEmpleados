@@ -10,7 +10,7 @@ const FormPrize = ({ name, description, points, imgSrc, onSubmit, handleChange }
                 handleChange(e, "descriptionPrize");
             }} value={description} />
             <input type="number" placeholder="Points" onChange={e => {
-                handleChange(e, "puntosPrize");
+                handleChange(e, "pointsPrize");
             }} value={points} />
             <input type="text" placeholder="URL image" onChange={e => {
                 handleChange(e, "imgSrcPrize");

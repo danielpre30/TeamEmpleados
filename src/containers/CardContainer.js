@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import Card from '../components/Card';
-import { BASE_LOCAL_ENDPOINT } from '../constants';
-import AchievementCard from '../components/AchievementCard';
-import FormEmployee from '../components/FormEmployee';
-import FormPrize from '../components/FormPrize';
+import React, { Component } from "react";
+import Card from "../components/Card";
+import { BASE_LOCAL_ENDPOINT } from "../constants";
+import AchievementCard from "../components/AchievementCard";
+import FormEmployee from "../components/FormEmployee";
+import FormPrize from "../components/FormPrize";
+import axios from "axios";
 
 class CardContainer extends Component {
     constructor(props) {
@@ -18,120 +19,123 @@ class CardContainer extends Component {
             pointsEmployee: 0,
             namePrize: "",
             descriptionPrize: "",
-            puntosPrize: "",
-            imgSrcPrize: ""
+            pointsPrize: "",
+            imgSrcPrize: "",
+            error: ""
         };
     }
 
     componentDidMount() {
-        const {
-            cardType
-        } = this.props;
-
+        const { cardType } = this.props;
         this.getObjects(cardType);
     }
 
     sortList = (a, b) => {
         const { cardType } = this.props;
-        if (cardType === "employees") return b.points - a.points;
-        else return a.points - b.points;
-    }
+        return (cardType === "employees") ? b.points - a.points : a.points - b.points;
+    };
 
-    handleFilter = (e, field) => {
+    handleChange = (e, field) => {
         const value = e.target.value;
         this.setState({
-            [field]: value  //Los corchetes son para hacer referencia a la clave a partir de un string
+            [field]: value //Los corchetes son para hacer referencia a la clave a partir de un string
         });
-    }
+    };
 
     getObjects(url) {
-        const axios = require('axios');
-
-        axios.get(`${BASE_LOCAL_ENDPOINT}/${url}`)
-            .then((response) => {
-                // handle success
-                response.data.sort(this.sortList);
-                this.setState({
-                    list: response.data.map((current) => {
-                        return { ...current, disabled: true }
-                    })
-                });
-            })
-            .catch((error) => {
-                // handle error
-                console.log(error);
-                this.setState({
-                    achievements: {
-                        error: error.message
-                    }
-                });
-            })
+        axios.get(`${BASE_LOCAL_ENDPOINT}/${url}`).then(response => {
+            // handle success
+            response.data.sort(this.sortList);
+            this.setState({
+                list: response.data.map(current => {
+                    return { ...current, disabled: true };
+                })
+            });
+        }).catch(error => {
+            // handle error
+            console.log(error);
+            this.setState({
+                error: error.message
+            });
+        });
     }
     editAchievement = (e, id) => {
-        const { list } = this.state;
         this.setState(prevState => {
             const oldlist = prevState.list;
             return {
-                list: oldlist.map((current) => {
-                    const isSelected = current.id === id;
-                    return isSelected ? { ...current, disabled: !current.disabled } : current;
+                list: oldlist.map(current => {
+                    return (current.id === id) ? { ...current, disabled: !current.disabled } : current;
                 })
-
             };
         });
-    }
+    };
     createEmployee(e) {
         e.preventDefault();
-        console.log(2);
+        const {
+            nameEmployee,
+            jobEmployee,
+            areaEmployee,
+            imgSrcEmployee,
+            pointsEmployee
+        } = this.state;
 
-        this.setState(prevState => {
-            const oldEmployees = prevState.list;
-            return {
-                list: [
-                    ...oldEmployees,
-                    {
-                        id: Math.random(),
-                        name: prevState.nameEmployee,
-                        job: prevState.jobEmployee,
-                        area: prevState.areaEmployee,
-                        imgSrc: prevState.imgSrcEmployee,
-                        points: prevState.pointsEmployee
-                    }
-                ],
-                nameEmployee: "",
-                jobEmployee: "",
-                areaEmployee: "",
-                imgSrcEmployee: "",
-                pointsEmployee: ""
-            };
+        axios.post(`${BASE_LOCAL_ENDPOINT}/employees`, {
+            name: nameEmployee,
+            job: jobEmployee,
+            area: areaEmployee,
+            imgSrc: imgSrcEmployee,
+            points: pointsEmployee
+        }).then(response => {
+            this.setState(({ list }) => {
+                return {
+                    list: [...list, response.data],
+                    nameEmployee: "",
+                    jobEmployee: "",
+                    areaEmployee: "",
+                    imgSrcEmployee: "",
+                    pointsEmployee: ""
+                };
+            });
+        }).catch(error => {
+            console.log(error);
+            this.setState({
+                error: error.message
+            });
         });
     }
 
     createPrize(e) {
         e.preventDefault();
+        const {
+            namePrize,
+            descriptionPrize,
+            pointsPrize,
+            imgSrcPrize
+        } = this.state;
 
-        this.setState(prevState => {
-            const oldEmployees = prevState.list;
-            return {
-                list: [
-                    ...oldEmployees,
-                    {
-                        id: Math.random(),
-                        name: prevState.namePrize,
-                        points: prevState.puntosPrize,
-                        imgSrc: prevState.imgSrcPrize,
-                        description: prevState.descriptionPrize
-                    }
-                ],
-                namePrize: "",
-                descriptionPrize: "",
-                puntosPrize: "",
-                imgSrcPrize: ""
-            };
+        axios.post(`${BASE_LOCAL_ENDPOINT}/prizes`, {
+            name: namePrize,
+            description: descriptionPrize,
+            points: pointsPrize,
+            imgSrc: imgSrcPrize
+        }).then(response => {
+            this.setState(({ list }) => {
+                return {
+                    list: [...list, response.data],
+                    namePrize: "",
+                    descriptionPrize: "",
+                    pointsPrize: "",
+                    imgSrcPrize: ""
+                };
+            });
+        }).catch(error => {
+            console.log(error);
+            this.setState({
+                error: error.message
+            });
         });
     }
-        
-   
+
     render() {
         const {
             list,
@@ -141,7 +145,6 @@ class CardContainer extends Component {
             areaEmployee,
             imgSrcEmployee,
             pointsEmployee,
-
             namePrize,
             descriptionPrize,
             pointsPrize,
@@ -149,32 +152,69 @@ class CardContainer extends Component {
         } = this.state;
 
         const { cardType } = this.props;
-        var cards;
+        let cards, formEdit;
 
-        const filteredList = list.sort(this.sortList).filter((val, i) =>
+        const filteredList = list.sort(this.sortList).filter((val) =>
             val.name.toLowerCase().includes(filterText)
-        );
+        ); // Ordena la lista según sea el caso y luego la filtra
 
         if (cardType === "achievements") {
             cards = (
-                <div className='achievementsCont'>
-                    <ul className='achievement'>
+                <div className="achievementsCont">
+                    <ul className="achievement">
                         {filteredList.map(({ id, name, points, disabled }) => (
-                            <AchievementCard name={name} points={points} key={id} editAchievement={(e) => this.editAchievement(e, id)} disabled={disabled}/>
+                            <AchievementCard
+                                name={name}
+                                points={points}
+                                key={id}
+                                editAchievement={e => this.editAchievement(e, id)}
+                                disabled={disabled}
+                            />
                         ))}
                     </ul>
                 </div>
             );
-
         }
         else {
             cards = (
                 <div className="card-container">
-                    {filteredList.map(({ name, imgSrc, points, id }) =>
-                        <Card name={name} srcImage={imgSrc} points={points} key={id} id={id} cardType={cardType}></Card>
-                    )}
+                    {filteredList.map(({ name, imgSrc, points, id }) => (
+                        <Card
+                            name={name}
+                            srcImage={imgSrc}
+                            points={points}
+                            key={id}
+                            id={id}
+                            cardType={cardType}
+                        />
+                    ))}
                 </div>
             );
+            if (cardType === "employees") {
+                formEdit = (
+                    <FormEmployee
+                        name={nameEmployee}
+                        job={jobEmployee}
+                        area={areaEmployee}
+                        points={pointsEmployee}
+                        onSubmit={e => this.createEmployee(e)}
+                        handleChange={this.handleChange}
+                        imgSrc={imgSrcEmployee}
+                    />
+                );
+            }
+            else if (cardType === "prizes") {
+                formEdit = (
+                    <FormPrize
+                        name={namePrize}
+                        description={descriptionPrize}
+                        points={pointsPrize}
+                        imgSrc={imgSrcPrize}
+                        onSubmit={e => this.createPrize(e)}
+                        handleChange={this.handleChange}
+                    />
+                );
+            }
         }
 
         return (
@@ -185,33 +225,16 @@ class CardContainer extends Component {
                         type="search"
                         placeholder="Buscar"
                         onChange={e => {
-                            this.handleFilter(e, "filterText");
-                        }} />
-                    <i className="fa fa-search"></i>
+                            this.handleChange(e, "filterText");
+                        }}
+                    />
+                    <i className="fa fa-search" />
                 </form>
-                {/* <FormEmployee
-                    name={nameEmployee}
-                    job={jobEmployee}
-                    area={areaEmployee}
-                    points={pointsEmployee}
-                    onSubmit={e => this.createEmployee(e)}
-                    handleChange={this.handleFilter}
-                    imgSrc={imgSrcEmployee}
-                /> */}
-                {/* <FormPrize
-                    name={namePrize}
-                    description={descriptionPrize}
-                    points={pointsPrize}
-                    imgSrc={imgSrcPrize}
-                    onSubmit={e => this.createPrize(e)}
-                    handleChange={this.handleFilter}
-                /> */}
-                
+                {formEdit}
                 {cards}
             </>
         );
     }
-
 }
 
 export default CardContainer;
