@@ -7,15 +7,16 @@ import checked from '../resources/checked.png';
 
 class AchievementCard extends Component {
     render() {
-        const { name, points, disabled, editAchievement } = this.props;
+        const { id, name, points, disabled, editAchievement,editChecked,deleteAchievement,
+        onChange } = this.props;
         var changeEditImg, inputDisabled;
         if (disabled) {
             changeEditImg = <img onClick={editAchievement} className="ImgEdit" src={editImg} alt="Edit" />
             inputDisabled = <span className="SpanName"  >{name}</span>
         }
         else {
-            changeEditImg = <img onClick={editAchievement} className="ImgEdit" src={checked} alt="Edit" />
-            inputDisabled = <input className="InputName" defaultValue={name} />
+            changeEditImg = <img onClick={editChecked} className="ImgEdit" src={checked} alt="Edit" />
+            inputDisabled = <input className="InputName" defaultValue={name} name={id} onChange={onChange}/>
 
         }
         return (
@@ -30,7 +31,7 @@ class AchievementCard extends Component {
                     </div>
                     <div className="DivButtons">
                         {changeEditImg}
-                        <img src={deleteImg} alt="Delete" />
+                        <img src={deleteImg} onClick={deleteAchievement} alt="Delete" />
                     </div>
                 </div>
             </>
