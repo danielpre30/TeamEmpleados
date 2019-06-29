@@ -1,0 +1,39 @@
+.employee-details {
+    display: flex;
+    padding: 2% 10%;
+    margin: 3% 15%;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.1);
+    background: white;
+    border: 1px solid #dfdfdf;
+}
+
+.employee-image {
+    display: block;
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.employee-content {
+    padding: 2em 4em;
+}
+
+.detail-item {
+    margin: 2em 0;
+}
+
+@media only screen and (max-width: 576px) {
+    /*shows elements in a column*/
+    .employee-details {
+        flex-direction: column;
+    }
+}
+
+.prizesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: .1rem;
+    justify-items: center;
+}

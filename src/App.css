@@ -14,12 +14,17 @@ body, html, button {
   font-family: 'Open Sans';
 }
 
-body, html{
+body, html {
   font-weight: normal;
   font-style: normal;
 }
 
-.page-title{
+.page-title {
   text-align: center;
   font-size: 2em;
+}
+
+.page-subtitle {
+  text-align: center;
+  font-size: 1.7em;
 }

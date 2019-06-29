@@ -24,7 +24,14 @@ class CardContainer extends Component {
             descriptionPrize: "",
             pointsPrize: "",
             imgSrcPrize: "",
-            error: ""
+            error: "",
+            listAchivements:[
+                // {
+                //     id:"",
+                //     name:"",
+                //     points:""
+                // }
+            ]
         };
     }
 
