@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/TeamEmpleados/static/css/main.7d0dc3bc.chunk.css",
+    "main.css": "/TeamEmpleados/static/css/main.e7f29458.chunk.css",
     "main.js": "/TeamEmpleados/static/js/main.b94fa7bc.chunk.js",
     "main.js.map": "/TeamEmpleados/static/js/main.b94fa7bc.chunk.js.map",
     "runtime~main.js": "/TeamEmpleados/static/js/runtime~main.7f24b53c.js",
@@ -8,9 +8,9 @@
     "static/js/2.b6094174.chunk.js": "/TeamEmpleados/static/js/2.b6094174.chunk.js",
     "static/js/2.b6094174.chunk.js.map": "/TeamEmpleados/static/js/2.b6094174.chunk.js.map",
     "index.html": "/TeamEmpleados/index.html",
-    "precache-manifest.3145f10b8900245acda9793ed08e7659.js": "/TeamEmpleados/precache-manifest.3145f10b8900245acda9793ed08e7659.js",
+    "precache-manifest.f490fe9fa143a20e58294e54c14b0bfd.js": "/TeamEmpleados/precache-manifest.f490fe9fa143a20e58294e54c14b0bfd.js",
     "service-worker.js": "/TeamEmpleados/service-worker.js",
-    "static/css/main.7d0dc3bc.chunk.css.map": "/TeamEmpleados/static/css/main.7d0dc3bc.chunk.css.map",
+    "static/css/main.e7f29458.chunk.css.map": "/TeamEmpleados/static/css/main.e7f29458.chunk.css.map",
     "static/media/404.gif": "/TeamEmpleados/static/media/404.b2d3566b.gif",
     "static/media/stylesheet.css": "/TeamEmpleados/static/media/OpenSans-SemiBoldItalic.fbcc9413.ttf",
     "static/media/all.min.css": "/TeamEmpleados/static/media/fa-solid-900.ef3df984.eot"
