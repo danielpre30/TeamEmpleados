@@ -87,13 +87,26 @@ class PrizesDetail extends Component {
             <>
                 <h1 className="page-title">Prizes Detail</h1>
                 <div className="employee-details">
-                    <div>
-                        <img src={imgSrc} alt="" className="employee-image" />
-                    </div>
+
                     <div className="employee-content">
-                        <p><b>Name: </b>{name}</p>
-                        <p><b>Description: </b>{description}</p>
-                        <p><b>Points: </b>{points}</p>
+                        <div>
+                            <img src={imgSrc} alt="" className="employee-image" />
+                        </div>
+                        <div className="employee-description">
+                            <div className="detail-item">
+                                <label htmlFor="name"><b>Name</b></label><br/>
+                                {name}
+                                
+                            </div>
+                            <div className="detail-item">
+                                <label htmlFor="description"><b>Description</b></label><br/>
+                                {description}
+                            </div>
+                            <div className="detail-item">
+                                <label htmlFor="points"><b>Points</b></label><br/>
+                                {points}
+                            </div>
+                        </div>
                     </div>
                     <div className="trash-content">
                         <i className="far fa-edit fa-lg icons"></i>

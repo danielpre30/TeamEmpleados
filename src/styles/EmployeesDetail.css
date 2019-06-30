@@ -25,6 +25,27 @@
 
 .detail-item {
     margin: 2em 0;
+    display: block;
+
+}
+.detail-item input{
+    color: #F67B27;
+    font-family: 'Open Sans';
+    font-weight: normal;
+    font-style: normal;
+    display:block;
+    
+    margin: 0.7em 0 1em 0em;
+    box-sizing: border-box;
+    border-width: 0 0 2px 0;
+    border-color: #f1f1f1;
+    background: #f9f9f9;
+    outline: none;
+    padding: 7px 0 7px 10px;
+    font-size: 15px;
+    transition: all ease-in-out 0.3s;
+    border-radius: 5px;
+    width: 120%;
 }
 
 @media only screen and (max-width: 700px) {
