@@ -12,20 +12,25 @@ import './App.css'
 function App() {
   return (
     <HashRouter>
-      <NavBar/>
-      <Switch>
-        <Route exact path="/"
-          render={() => (
-            <Redirect to="/employees" />
-          )}
-        />
-        <Route exact path="/employees" component={Employees} />
-        <Route exact path="/employees/:id" component={EmployeesDetail} />
-        <Route exact path="/prizes" component={Prizes}/>
-        <Route exact path="/prizes/:id" component={PrizesDetail} />
-        <Route exact path="/achievements" component={Achievements} />
-        <Route component={NotFound}></Route>
-      </Switch>
+      <NavBar />
+      <div className="main">
+        <Switch>
+          <Route exact path="/"
+            render={() => (
+              <Redirect to="/employees" />
+            )}
+          />
+          <Route exact path="/employees" component={Employees} />
+          <Route exact path="/employees/:id" component={EmployeesDetail} />
+          <Route exact path="/prizes" component={Prizes} />
+          <Route exact path="/prizes/:id" component={PrizesDetail} />
+          <Route exact path="/achievements" component={Achievements} />
+          <Route component={NotFound}></Route>
+        </Switch>
+        <div className="footer">
+          Copyright © 2019 TEAM International Services Inc. All Rights Reserved.
+        </div>
+      </div>
     </HashRouter>
   );
 }
