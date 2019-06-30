@@ -28,6 +28,8 @@
 }
 
 .LiAchievemet {
+    display: flex;
+    justify-content: space-between;
     padding: 5px;
     padding-right: 10px;
     list-style-type: none;
@@ -36,7 +38,6 @@
     border-style: solid;
     border-width: 1px;
     margin-bottom: 3%;
-    text-align: left;
     margin-right: 6%;
     width: 100%;
 }
@@ -63,13 +64,36 @@
     margin-right: 10px;
 }
 
-.InputName {
-    border: 1px solid #abc1d3;
-    width: 90%;
-    background: transparent;
+.LiAchievemet input{
     color: #F67B27;
     font-family: 'Open Sans';
     font-weight: normal;
     font-style: normal;
-    font-size: 1em;
+
+    
+    margin: 0.7em 0 1em 0em;
+    box-sizing: border-box;
+    border-width: 0 0 2px 0;
+    border-color: #f1f1f1;
+    background: #f9f9f9;
+    outline: none;
+    padding: 7px 0 7px 10px;
+    font-size: 15px;
+    transition: all ease-in-out 0.3s;
+    border-radius: 5px;
+}
+
+.LiAchievemet input.InputName {
+    width: 60%;
+}
+
+.LiAchievemet input.InputPoints{
+    width: 30%;
+}
+
+.points-content{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
 }
