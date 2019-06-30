@@ -38,12 +38,12 @@ class CardContainer extends Component {
         return (cardType === "employees") ? b.points - a.points : a.points - b.points;
     };
 
-    handleChange = (e, field) => {
+    handleChange = (e, field, listField) => {
         var {list} = this.state;
         var value = (field === "filterText") ? e.target.value.toLowerCase() : e.target.value;
         if(field==="list"){
             value = list.map(val=>
-                (val.id === parseInt(e.target.name, 10))? {...val, name: e.target.value}:val
+                (val.id === parseInt(e.target.name, 10))? {...val, [listField]: e.target.value}:val
             );
             console.log(value);
         }
@@ -267,7 +267,8 @@ class CardContainer extends Component {
                                 editChecked={e => this.editChecked(e, id)}
                                 deleteAchievement={e => this.deleteAchievement(e, id)}
                                 disabled={disabled}
-                                onChange = {(e)=> this.handleChange(e,"list")}
+                                onChangeName = {(e)=> this.handleChange(e,"list","name")}
+                                onChangePoints = {e => this.handleChange(e,"list","points")}
                             />
                         ))}
                     </ul>

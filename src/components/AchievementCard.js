@@ -7,26 +7,30 @@ import checked from '../resources/checked.png';
 
 class AchievementCard extends Component {
     render() {
-        const { id, name, points, disabled, editAchievement,editChecked,deleteAchievement,
-        onChange } = this.props;
-        var changeEditImg, inputDisabled;
+        const { id, name, points, disabled, editAchievement, editChecked, deleteAchievement,
+            onChangeName, onChangePoints } = this.props;
+        var changeEditImg, achievementName, achivementPoints;
         if (disabled) {
-            changeEditImg = <img onClick={editAchievement} className="ImgEdit" src={editImg} alt="Edit" />
-            inputDisabled = <span className="SpanName"  >{name}</span>
+            changeEditImg = <img onClick={editAchievement} className="ImgEdit" src={editImg} alt="Edit" />;
+            achievementName = <span className="SpanName"  >{name}</span>;
+            achivementPoints = <span className="SpanPoints">{points}</span>
         }
         else {
             changeEditImg = <img onClick={editChecked} className="ImgEdit" src={checked} alt="Edit" />
-            inputDisabled = <input className="InputName" defaultValue={name} name={id} onChange={onChange}/>
-
+            achievementName = <input type="text" className="InputName" defaultValue={name} name={id} onChange={onChangeName} />
+            achivementPoints = <input type="number" className="InputPoints" defaultValue={points} name={id} onChange={onChangePoints} />
         }
         return (
             <>
                 <div className="DivList">
                     <div className="DivItems">
                         <li className="LiAchievemet">
-                            {inputDisabled}
-                            <img className="ImgPoints" src={pointSmall} alt="Points" />
-                            <span className="SpanPoints">{points}</span>
+                            {achievementName}
+                            <div className="points-content">
+                                <img className="ImgPoints" src={pointSmall} alt="Points" />
+                                {achivementPoints}
+                            </div>
+
                         </li>
                     </div>
                     <div className="DivButtons">

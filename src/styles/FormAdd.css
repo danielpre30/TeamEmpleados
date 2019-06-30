@@ -20,7 +20,7 @@
     font-size: 12px;
 }
 
-.form-add input[type='text'], input[type='number'] {
+.form-add input[type='text'], .form-add input[type='number'] {
     display: block;
     margin-bottom: 20px;
     width: 100%;
@@ -35,12 +35,12 @@
     border-radius: 5px;
 }
 
-input[type='text']:hover, input[type='number']:hover {
+.form-add input[type='text']:hover, .form-add input[type='number']:hover {
     border-color: #e1e1e1;
     background: #f1f1f1;
 }
 
-input[type='text']:focus, input[type='number']:focus {
+.form-add input[type='text']:focus, .form-add input[type='number']:focus {
     background: #e1f8f7;
     border-color: #E32E7F;
 }
