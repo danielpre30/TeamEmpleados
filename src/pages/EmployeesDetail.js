@@ -173,8 +173,6 @@ class EmployeesDetail extends Component {
             inputs.push(<div name="area"> {area}</div>);
             inputs.push(<div name="points"> {points}</div>);
         }
-
-        console.log(`${name}, ${job}, ${area}, ${imgSrc}, ${points}`);
         return (
             <>
                 <h1 className="page-title">Employee Detail</h1>

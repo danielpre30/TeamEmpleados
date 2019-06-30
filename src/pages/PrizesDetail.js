@@ -18,7 +18,8 @@ class PrizesDetail extends Component {
                 points: ""
             },
             redirectToPrizes: false,
-            error: ''
+            error: '',
+            enable: false
         }
     }
 
@@ -94,10 +95,10 @@ class PrizesDetail extends Component {
                         <p><b>Description: </b>{description}</p>
                         <p><b>Points: </b>{points}</p>
                     </div>
-                <div className="trash-content">
-                    <i class="far fa-edit fa-lg icons"></i>
-                    <i onClick={e => this.deletePrize(e, id)} className="fas fa-trash fa-lg icons"></i>
-                </div>
+                    <div className="trash-content">
+                        <i className="far fa-edit fa-lg icons"></i>
+                        <i onClick={e => this.deletePrize(e, id)} className="fas fa-trash fa-lg icons"></i>
+                    </div>
                 </div>
             </>
         );
