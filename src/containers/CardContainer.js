@@ -92,7 +92,7 @@ class CardContainer extends Component {
                 const MySwal = withReactContent(Swal);
                 MySwal.fire({
                     type: 'success',
-                    title: `${response.data.name} has been saved`,
+                    title:'This achievement has been saved',
                     showConfirmButton: false,
                     timer: 1800
                 });
@@ -120,7 +120,7 @@ class CardContainer extends Component {
         const MySwal = withReactContent(Swal);
         MySwal.fire({
             type: 'warning',
-            title: 'Are you sure?',
+            title: 'Are you sure to delete this achievement?',
             text: "You won't be able to revert this",
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

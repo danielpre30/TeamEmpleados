@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Card = ({ name, srcImage, points, id, cardType }) => {
     return (
         <div className="card">
-            <div className="card__thumb"><span className="close-modal"><i className="fas fa-times fa-xs"></i></span>
+            <div className="card__thumb">
                 <img src={srcImage} alt="Profile" />
             </div>
             <div className="card__content">

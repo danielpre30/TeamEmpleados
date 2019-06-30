@@ -1,12 +1,15 @@
 .employee-details {
-    display: flex;
     padding: 2% 10%;
     margin: 3% 15%;
+    background: white;
+    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #dfdfdf;
+}
+
+.employee-content {
+    display: flex;
     align-items: center;
     justify-content: space-around;
-    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.1);
-    background: white;
-    border: 1px solid #dfdfdf;
 }
 
 .employee-image {
@@ -16,7 +19,7 @@
     border-radius: 5px;
 }
 
-.employee-content {
+.employee-description {
     padding: 2em 4em;
 }
 
@@ -26,7 +29,7 @@
 
 @media only screen and (max-width: 576px) {
     /*shows elements in a column*/
-    .employee-details {
+    .employee-content {
         flex-direction: column;
     }
 }
@@ -36,4 +39,13 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: .1rem;
     justify-items: center;
+}
+
+.trashIcon {
+    color: #62E52C;
+}
+
+.trash-content {
+    text-align: right;
+    padding-bottom: 10px;
 }
