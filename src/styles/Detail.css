@@ -1,4 +1,4 @@
-.employee-details {
+.detail-details {
     padding: 2% 10%;
     margin: 3% 15%;
     background: white;
@@ -6,26 +6,27 @@
     border: 1px solid #dfdfdf;
 }
 
-.employee-content {
+.detail-content {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-.employee-image {
+.detail-image {
     display: block;
     width: 200px;
     height: auto;
     border-radius: 5px;
 }
 
-.employee-description {
-    padding: 2em 4em;
+.detail-description {
+    margin: 2em 4em;
 }
 
 .detail-item {
     margin: 2em 0;
     display: block;
+    width: 80%;
 
 }
 .detail-item input{
@@ -45,12 +46,11 @@
     font-size: 15px;
     transition: all ease-in-out 0.3s;
     border-radius: 5px;
-    width: 120%;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1040px) {
     /*shows elements in a column*/
-    .employee-content {
+    .detail-content {
         flex-direction: column;
     }
 }

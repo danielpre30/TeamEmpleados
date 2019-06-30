@@ -7,10 +7,10 @@ import { Route } from 'react-router-dom';
 
 class NavBar extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         const menuIcon = document.getElementById('menu-icon');
         const menuContent = document.getElementById('menu-content');
-        menuIcon.addEventListener('click', () =>{
+        menuIcon.addEventListener('click', () => {
             menuContent.classList.toggle('active');
         });
     }
@@ -19,7 +19,9 @@ class NavBar extends Component {
             <nav className="nav-bar">
                 <div className="logo-container">
                     <i className="fas fa-bars fa-2x" id="menu-icon"></i>
-                    <img src={Logo} alt='Team Logo' className="logo"></img>
+                    <Link to={"/employees"}>
+                        <img src={Logo} alt='Team Logo' className="logo"></img>
+                    </Link>
                 </div>
                 <ul className='nav-item-cont' id="menu-content">
                     <MenuLink label="EMPLOYEES" to="/employees" activeOnlyWhenExact={false}></MenuLink>

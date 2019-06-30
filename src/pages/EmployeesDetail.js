@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BASE_LOCAL_ENDPOINT } from '../constants';
 import axios from 'axios';
-import '../styles/EmployeesDetail.css'
+import '../styles/Detail.css'
 import Card from "../components/Card";
 import '../resources/fontawesome-free-5.9.0-web/css/all.min.css';
 import Swal from 'sweetalert2'
@@ -41,7 +41,6 @@ class EmployeesDetail extends Component {
 
     componentDidMount() {
         this.getEmployee();
-
     }
     getPrizes() {
         axios.get(`${BASE_LOCAL_ENDPOINT}/prizes`)
@@ -114,7 +113,7 @@ class EmployeesDetail extends Component {
         });
     }
 
-    editChecked = (e,id) => {
+    editChecked = (e, id) => {
         const { employeeInfo } = this.state;
         axios.put(`${BASE_LOCAL_ENDPOINT}/employees/${id}`, employeeInfo)
             .then(response => {
@@ -156,7 +155,7 @@ class EmployeesDetail extends Component {
         var icon;
 
         if (enable) {
-            icon = <i className="fas fa-check icons" onClick={(e)=>{this.editChecked(e,id)}} />;
+            icon = <i className="fas fa-check icons" onClick={(e) => { this.editChecked(e, id) }} />;
             inputs.push(<input type="text" name="name" defaultValue={name} onChange={(e) => { this.handleChange(e, "name") }} />);
             inputs.push(<input type="text" name="job" defaultValue={job} onChange={(e) => { this.handleChange(e, "job") }} />);
             inputs.push(<input type="text" name="area" defaultValue={area} onChange={(e) => { this.handleChange(e, "area") }} />);
@@ -178,15 +177,13 @@ class EmployeesDetail extends Component {
                 <h1 className="page-title">Employee Detail</h1>
 
 
-                <div className="employee-details">
+                <div className="detail-details">
 
-                    <div className="employee-content">
+                    <div className="detail-content">
                         <div>
-                            <img src={imgSrc} alt="" className="employee-image" />
-
+                            <img src={imgSrc} alt="" className="detail-image" />
                         </div>
-                        <div></div>
-                        <div className="employee-description">
+                        <div className="detail-description">
 
                             <div className="detail-item">
                                 <label htmlFor="name"><b>Name</b></label>
