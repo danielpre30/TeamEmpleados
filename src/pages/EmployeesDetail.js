@@ -6,7 +6,7 @@ import Card from "../components/Card";
 import '../resources/fontawesome-free-5.9.0-web/css/all.min.css';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class EmployeesDetail extends Component {
     constructor(props) {
@@ -22,17 +22,28 @@ class EmployeesDetail extends Component {
             },
             prizes: [],
             redirectToEmployees: false,
-
+            enable: false,
             error: ''
         }
     }
+
+    handleChange = (e, field) => {
+        const value = e.target.value;
+        this.setState((prevState) => {
+            return {
+                employeeInfo: {
+                    ...prevState.employeeInfo,
+                    [field]: value //Los corchetes son para hacer referencia a la clave a partir de un string
+                }
+            }
+        });
+    };
 
     componentDidMount() {
         this.getEmployee();
 
     }
     getPrizes() {
-
         axios.get(`${BASE_LOCAL_ENDPOINT}/prizes`)
             .then(response => {
                 this.setState({
@@ -41,7 +52,6 @@ class EmployeesDetail extends Component {
                         return points <= this.state.employeeInfo.points
                     })
                 });
-
             }).catch(error => {
                 // handle error
                 console.log(error);
@@ -98,6 +108,34 @@ class EmployeesDetail extends Component {
         });
     }
 
+    editEmployee = () => {
+        this.setState({
+            enable: true
+        });
+    }
+
+    editChecked = (e,id) => {
+        const { employeeInfo } = this.state;
+        axios.put(`${BASE_LOCAL_ENDPOINT}/employees/${id}`, employeeInfo)
+            .then(response => {
+                const MySwal = withReactContent(Swal);
+                MySwal.fire({
+                    type: 'success',
+                    title: 'This Employee has been saved',
+                    showConfirmButton: false,
+                    timer: 1800
+                });
+            }).catch(error => {
+                console.log(error);
+                this.setState({
+                    error: error.message
+                });
+            });
+
+        this.setState({
+            enable: false
+        });
+    }
 
     render() {
         const {
@@ -111,18 +149,38 @@ class EmployeesDetail extends Component {
             },
             prizes,
             redirectToEmployees,
+            enable
         } = this.state;
         if (redirectToEmployees) return <Redirect to="/employees" />;
+        var inputs = [];
+        var icon;
+
+        if (enable) {
+            icon = <i className="fas fa-check icons" onClick={(e)=>{this.editChecked(e,id)}} />;
+            inputs.push(<input type="text" name="name" defaultValue={name} onChange={(e) => { this.handleChange(e, "name") }} />);
+            inputs.push(<input type="text" name="job" defaultValue={job} onChange={(e) => { this.handleChange(e, "job") }} />);
+            inputs.push(<input type="text" name="area" defaultValue={area} onChange={(e) => { this.handleChange(e, "area") }} />);
+            inputs.push(<input type="number" name="points" defaultValue={points} onChange={(e) => { this.handleChange(e, "points") }} />);
+            inputs.push(<div className="detail-item">
+                <label htmlFor="imgSrc"><b>Image URL</b></label>
+                <input type="text" name="imgSrc" defaultValue={imgSrc} onChange={(e) => { this.handleChange(e, "imgSrc") }} />
+            </div>)
+        }
+        else {
+            icon = <i className="far fa-edit fa-lg icons" onClick={this.editEmployee} />;
+            inputs.push(<div name="name"> {name}</div>);
+            inputs.push(<div name="job"> {job}</div>);
+            inputs.push(<div name="area"> {area}</div>);
+            inputs.push(<div name="points"> {points}</div>);
+        }
+
+        console.log(`${name}, ${job}, ${area}, ${imgSrc}, ${points}`);
         return (
             <>
                 <h1 className="page-title">Employee Detail</h1>
 
 
                 <div className="employee-details">
-
-                    <div className="trash-content">
-                        <i onClick={e => this.deleteEmployee( e,id)} className="fas fa-trash fa-lg trashIcon"></i>
-                    </div>
 
                     <div className="employee-content">
                         <div>
@@ -134,22 +192,26 @@ class EmployeesDetail extends Component {
 
                             <div className="detail-item">
                                 <label htmlFor="name"><b>Name</b></label>
-                                <div name="name"> {name}</div>
+                                {inputs[0]}
                             </div>
                             <div className="detail-item">
                                 <label htmlFor="job"><b>Job</b></label>
-                                <div name="job"> {job}</div>
+                                {inputs[1]}
                             </div>
                             <div className="detail-item">
                                 <label htmlFor="area"><b>Area</b></label>
-                                <div name="area"> {area}</div>
+                                {inputs[2]}
                             </div>
                             <div className="detail-item">
                                 <label htmlFor="points"><b>Points</b></label>
-                                <div name="points"> {points}</div>
+                                {inputs[3]}
                             </div>
-
+                            {inputs[4]}
                         </div>
+                    </div>
+                    <div className="trash-content">
+                        {icon}
+                        <i onClick={e => this.deleteEmployee(e, id)} className="fas fa-trash fa-lg icons"></i>
                     </div>
                 </div>
                 <h3 className="page-subtitle">Available Prizes</h3>

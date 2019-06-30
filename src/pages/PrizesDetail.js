@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from "axios";
 import { BASE_LOCAL_ENDPOINT } from "../constants";
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import '../resources/fontawesome-free-5.9.0-web/css/all.min.css';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-class PrizesDetail extends Component{
+class PrizesDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
             prizeInfo: {
-                id:"",
+                id: "",
                 name: "",
                 description: "",
                 imgSrc: "",
@@ -22,7 +22,7 @@ class PrizesDetail extends Component{
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getPrize();
     }
 
@@ -70,7 +70,7 @@ class PrizesDetail extends Component{
             }
         });
     }
-    render(){
+    render() {
         const {
             prizeInfo: {
                 id,
@@ -86,9 +86,6 @@ class PrizesDetail extends Component{
             <>
                 <h1 className="page-title">Prizes Detail</h1>
                 <div className="employee-details">
-                    <div className="trash-content">
-                        <i onClick={e => this.deletePrize(e, id)} className="fas fa-trash fa-lg trashIcon"></i>
-                    </div>
                     <div>
                         <img src={imgSrc} alt="" className="employee-image" />
                     </div>
@@ -97,6 +94,10 @@ class PrizesDetail extends Component{
                         <p><b>Description: </b>{description}</p>
                         <p><b>Points: </b>{points}</p>
                     </div>
+                <div className="trash-content">
+                    <i class="far fa-edit fa-lg icons"></i>
+                    <i onClick={e => this.deletePrize(e, id)} className="fas fa-trash fa-lg icons"></i>
+                </div>
                 </div>
             </>
         );

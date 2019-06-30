@@ -39,13 +39,12 @@ class CardContainer extends Component {
     };
 
     handleChange = (e, field, listField) => {
-        var {list} = this.state;
+        var { list } = this.state;
         var value = (field === "filterText") ? e.target.value.toLowerCase() : e.target.value;
-        if(field==="list"){
-            value = list.map(val=>
-                (val.id === parseInt(e.target.name, 10))? {...val, [listField]: e.target.value}:val
+        if (field === "list") {
+            value = list.map(val =>
+                (val.id === parseInt(e.target.name, 10)) ? { ...val, [listField]: e.target.value } : val
             );
-            console.log(value);
         }
         this.setState({
             [field]: value //Los corchetes son para hacer referencia a la clave a partir de un string
@@ -86,13 +85,12 @@ class CardContainer extends Component {
             return val.id === id;
         });
 
-        const axios = require('axios');
         axios.put(`${BASE_LOCAL_ENDPOINT}/achievements/${id}`, data)
             .then(response => {
                 const MySwal = withReactContent(Swal);
                 MySwal.fire({
                     type: 'success',
-                    title:'This achievement has been saved',
+                    title: 'This achievement has been saved',
                     showConfirmButton: false,
                     timer: 1800
                 });
@@ -267,8 +265,8 @@ class CardContainer extends Component {
                                 editChecked={e => this.editChecked(e, id)}
                                 deleteAchievement={e => this.deleteAchievement(e, id)}
                                 disabled={disabled}
-                                onChangeName = {(e)=> this.handleChange(e,"list","name")}
-                                onChangePoints = {e => this.handleChange(e,"list","points")}
+                                onChangeName={(e) => this.handleChange(e, "list", "name")}
+                                onChangePoints={e => this.handleChange(e, "list", "points")}
                             />
                         ))}
                     </ul>
